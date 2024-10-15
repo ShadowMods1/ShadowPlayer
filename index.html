@@ -4,18 +4,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShadowPlayer - Watch Movies Online (FREE)</title>
-    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/5yKBLFFG/IMG-0124.png">
+    <title>ShadowPlayer - Watch Movies Online(FREE)</title>
+  <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/5yKBLFFG/IMG-0124.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body {
-            user-select: none;
+body {
+  user-select:none;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             color: #ffffff;
             background: url("https://cdn.glitch.global/e1021303-0eea-4ff7-b66a-bace696a247c/05515206-500b-418a-98e0-dd5f61e5e6c2.image.png?v=1715104533357");
         }
-        #nice {
+      #nice {
             height: auto;
             width: 85%;
             padding: 20px;
@@ -24,14 +25,14 @@
             border-radius: 8px;
             margin-bottom: 20px;
             text-align: center;
-        }
-        .siteDescription {
+      }
+              .siteDescription {
             font-size: 15px;
             color: #888;
             margin-top: 10px;
-            text-align: left;
-            margin-left: 12px;
-            font-family: "Work Sans", sans-serif;
+            text-align:left;
+            margin-left:12px;
+            font-family: "Work Sans",sans-serif;
         }
         #versionLog {
             font-size: 15px;
@@ -45,18 +46,18 @@
         #search-container {
             display: flex;
             justify-content: center;
-            flex-direction: row;
+            flex-direction:row;
             margin-bottom: 20px;
         }
         #search-type {
             appearance: none;
             border-radius: 5px 0 0 5px;
-            height: 37.5px;
-            background-color: #222;
-            color: white;
-            font-weight: bold;
-            border: 1px solid #333;
-            text-align: center;
+            height:37.5px;
+            background-color:#222;
+            color:white;
+            font-weight:bold;
+            border:1px solid #333;
+            text-align:center;
         }
         #search-input {
             padding: 10px;
@@ -68,17 +69,22 @@
             margin-bottom: 10px;
         }
         #search-button {
-            margin-left: -4px;
+            margin-left:-4px;
             padding: 9.6px 10px;
-            height: 37.5px;
+            height:37.5px;
             font-size: 16px;
             background-color: lightblue;
-            font-weight: bold;
+            font-weight:bold;
             color: #ffffff;
             border: none;
             border-radius: 0 5px 5px 0;
             cursor: pointer;
         }
+      #search-type:focus,
+      #search-input:focus,
+      #seach-button:focus {
+        outline:none;
+      }
         #search-button:hover {
             background-color: #0056b3;
         }
@@ -87,17 +93,17 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
             grid-gap: 33.5px;
-            width: 88%;
+            width:88%;
         }
         .movie-card {
-            width: 220px;
+            width:220px;
             background-color: #191919;
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
-            height: 420px;      
+            height:420px;      
         }
         .movie-card:hover {
             transform: scale(1.01);
@@ -105,8 +111,8 @@
         }
         .movie-poster {
             border-radius: 8px;
-            width: 100%;
-            margin: 0.1% auto;
+            width:100%;
+            margin:0.1% auto;
         }
         .movie-title {
             font-size: 16px;
@@ -118,94 +124,458 @@
             font-size: 14px;
             margin-top: 5px;
             color: #aaa;
-            width: 200px; 
-            max-height: 50px; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            white-space: normal; 
-            display: -webkit-box; 
-            -webkit-box-orient: vertical; 
-            -webkit-line-clamp: 3; 
+    width: 200px; 
+    max-height: 50px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: normal; 
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 3; 
         }
-        #socialButtons {
-            position: absolute;
-            bottom: 5px;
-            right: 0;
-            margin-right: 5px;
+              #title {
+            font-weight: 700;
+            text-align: center;
+            width: 270px;
+            height: 50px;
+            align-items: center;
+            border-radius: 9px;
+            margin: 1% auto;
+            justify-content: center;
+            padding: 10px;
             display: flex;
+            color: #fff;
         }
-        .social-icon {
-            font-size: 20px;
-            margin-right: 10px; 
-            color: #333; 
-            transition: color 0.3s ease;
+      #iframe-container iframe{
+        position:absolute; 
+        height:93%; 
+        width:100%;
+        left:0;
+        top:0;
+        z-index:999999;
+      }
+      #movieItems {
+        margin-top:44%;
+        background-color:#222;
+        height:800px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        padding:10px 0;
+        width:100%;
+            justify-content: center;
+                    background-size: cover;
+            background-position: center;
+
+
+      }
+
+#socialButtons {
+  position:absolute;
+  bottom:5px;
+  right:0;
+  margin-right:5px;
+    display: flex;
+}
+
+.social-icon {
+    font-size: 20px;
+    margin-right: 10px; 
+    color: #333; 
+    transition: color 0.3s ease;
+}
+
+.social-icon:last-child {
+    margin-right: 0; 
+}
+
+.social-icon:hover {
+    color: #007bff; 
+}
+
+#showall {
+    position:absolute;
+  bottom:5px;
+  left:0;
+  margin-right:5px;
+    padding: 8px 20px;
+    background-color: #007bff; 
+    color: #ffffff;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#showall:hover {
+    background-color: #0056b3; 
+}
+
+#likeDislikeButtons {
+    position:absolute;
+  bottom:5px;
+  left:155px;
+  margin-right:5px;
+    display: flex;
+}
+
+.like-button, .dislike-button {
+    padding: 8px 20px;
+    background-color: orange; 
+    color: #ffffff;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 14px;
+    margin-right:10px;
+    transition: background-color 0.3s ease;
+}
+
+.like-button:last-child, .dislike-button:last-child {
+    margin-right: 0; 
+}
+
+.like-button:hover, .dislike-button:hover {
+    background-color: #218838; 
+}
+      #series {
+        margin-top:-753px;
+        font-weight:bold;
+       display:flex;
+      flex-direction:row;
+      align-items:center;
+      }
+      #series .values{
+      background-color:#444;
+      color:white;
+      border-radius:8px;
+      border:2px solid #333;
+      padding:5px;
+      }
+      #load {
+      background-color:lightblue;
+      color:white;
+      border-radius:8px;
+      border:2px solid #333;
+      padding:5px;
+      }
+      #movie-info-contain {
+        margin:0;
+      display:flex;
+      flex-direction:row;
+                    position:absolute;
+            left:8px;
+            top:830px;
+        height:300px;
+      }
+              .movie-info {
+                margin:0;
+            background-color: #032541;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            min-width: 300px;
+            width:300px;
+            min-height: 400px;
+            max-height: 400px;
+            height:400px;
+            padding-bottom: 20px;
         }
-        .social-icon:hover {
-            color: #007bff; 
+      #mi {
+                    background-color: #032541;
+                    border-radius:8px 0 0 8px;
+                    display:flex;
+            align-items:center;
+            flex-direction:column;
+      }
+        .movie-info h2 {
+            color: #fff;
+            font-weight:bold;
+            text-align:left;
+            margin-top: 0;
         }
-        .like-button, .dislike-button {
-            padding: 8px 20px;
-            background-color: orange; 
-            color: #ffffff;
-            border: none;
-            border-radius: 4px; 
-            cursor: pointer;
-            font-size: 14px;
-            margin-right: 10px;
-            transition: background-color 0.3s ease;
+
+        .movie-info p {
+            text-align:left;
+            color: #fff;
+            margin-bottom: 10px;
         }
-        .like-button:hover, .dislike-button:hover {
-            background-color: #218838; 
+
+        .movie-image {
+          width:100%;
+          height:90%;
+          margin:0;
+          border-radius: 8px 0 0 0;
         }
-    </style>
+      .section {
+        background:#0f0f0f;
+        height:100px;
+        padding:10px;
+        text-align:center;
+        width:101.6%;
+        margin-left:-20px;
+        margin-bottom:30px;
+      }
+      .section a{
+       background-color:#00acc1;
+       margin:1% auto;
+      border-radius:5px;
+      padding:10px;
+        font-weight:bold;
+        text-decoration:none;
+        color:white;
+      }
+      .section p {
+        color:#888;
+      }
+  </style>
 </head>
 <body>
-    <div id="nice">
+      <div id="nice">
         <div id="title">
-            <img src="https://i.postimg.cc/5yKBLFFG/IMG-0124.png">
+          <img src="https://i.postimg.cc/5yKBLFFG/IMG-0124.png">
         </div>
-        <h2 style="color:#555;">Watch Movies Online in HD for Free!</h2>
-        <div id="search-container">
-            <select id="search-type">
-                <option value="movie">Movie</option>
-                <option value="tv">TV Show</option>
-            </select>
-            <input type="text" id="search-input" placeholder="Search for a movie...">
-            <button id="search-button">Search</button>
-        </div>
-        <div id="results-dropdown"></div>
-        <p id="versionLog">Version 2.0 (October 2024)</p>
+        <h2 style="color:#555;">
+          Watch Movies Online in HD for Free!
+        </h2>
+    <div id="search-container">
+        <select id="search-type">
+            <option value="movie">Movie</option>
+            <option value="tv">TV Show</option>
+        </select>
+        <input type="text" id="search-input" placeholder="Search for a movie...">
+        <button id="search-button">Search</button>
     </div>
+            <div id="results-dropdown"></div>
+        <div class="section">
+                    <p>
+            Our Players!
+          </p>
+          <br>
+            <a href="https://shadowplayer.onrender.com" id="player1">Home</a> <a id="player3" onclick="alert('Coming Soon...');">Player 2</a>
+            </div>
+        <div id="webdescription">
+                <h3 style="text-align:left; margin-left:12px; margin-bottom:5px;">ShadowPlayer - Watch Movies Online for FREE</h3>
+      <p class="siteDescription">ShadowPlayer - the ultimate online movie streaming website that brings the magic of cinema to your fingertips. With a vast and diverse database, as well as a multitude of exciting features, ShadowPlayer offers an unparalleled movie-watching experience for film enthusiasts worldwide.</p>
+
+      <p class="siteDescription">At ShadowPlayer, we take pride in our extensive database that encompasses a wide range of movies from various genres, eras, and countries. From Hollywood blockbusters to independent gems, we have something for everyone. Our database is continuously updated with the latest releases, ensuring that you stay up-to-date with the hottest films in the industry.</p>
+
+      <p class="siteDescription">One of the standout features of ShadowPlayer is our personalized recommendation system. Our sophisticated algorithms analyze your viewing history, preferences, and ratings to curate a customized list of movie recommendations tailored specifically to your tastes. Discover new films you'll love and embark on exciting cinematic adventures you never knew existed.</p>
+
+      <p class="siteDescription">In addition to our large database and personalized recommendations, ShadowPlayer offers high-quality streaming for an immersive viewing experience. Enjoy movies in stunning high-definition resolution, accompanied by crisp audio, bringing the theater experience right to your home. Our adaptive streaming technology ensures smooth playback, adjusting to your internet connection for uninterrupted enjoyment.</p>
+
+      <p class="siteDescription">ShadowPlayer also understands the importance of convenience and accessibility. Our platform is compatible with various devices, including laptops, tablets, and smartphones, allowing you to watch movies anytime, anywhere. Whether you're at home or on the go,ShadowPlayer keeps you connected to your favorite films.</p>
+
+      <p class="siteDescription">Furthermore, ShadowPlayer fosters a vibrant community of movie enthusiasts. Engage in discussions, share reviews, and interact with fellow cinephiles through our dedicated forums and social features. Connect with like-minded individuals, exchange recommendations, and dive deeper into the world of cinema.</p>
+
+<p class="siteDescription">In summary, ShadowPlayer is the ultimate online movie streaming destination, offering a vast database, personalized recommendations, high-quality streaming, device compatibility, and an engaging community. Prepare to be captivated by the world of cinema as you embark on a cinematic journey like no other. Welcome to ShadowPlayer, where movies come to life.</p>
+        <p id="versionLog">Version 2.0 (October 2024)</p>
+                  </div>
+    </div>
+    <div id="iframe-container"></div>
+<div id="movieItems">
+    <button id="showall">
+        <i class="fas fa-search"></i> Search Again
+    </button>
+    <div id="likeDislikeButtons">
+        <button class="like-button"><i class="fas fa-thumbs-up"></i> Like</button>
+        <button class="dislike-button"><i class="fas fa-thumbs-down"></i> Dislike</button>
+    </div>
+  <div id="hidden-result-id" style="visibility:hidden; margin:0;">
+    
+  </div>
+  <div id="series">
+            <button class="values" onclick="decrement('value1')"><<</button>
+                <button class="values" onclick="decrement('value2')"><</button>
+                  <p>
+                  Season:
+                  </p>
+            <span style="margin-right:6px;" id="value1">1</span>
+                  <p>
+                  
+                  Episode:
+                  </p>
+                  <span id="value2">1</span>
+                  <button id="load" onclick="changeSE()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="values" onclick="increment('value2')">></button>
+        <button class="values" onclick="increment('value1')">>></button>
+  </div>
+      <div id="socialButtons">
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div id="movie-info-contain">
+          <div class="movie-info">
+      <div id="mi">
+   <img id="movie-image" class="movie-image" src="" alt="Movie Image">
+<div style="display:flex; flex-direction:row; align-items:center; font-family:sans-serif;">
+<img style="margin-right:5px; height:30px;" src="https://i.postimg.cc/x1L49Gxf/image.png">
+<div style="display:flex; flex-direction:column; margin:0;">
+<p style="color:gray; margin:0;">Now Streaming</p>
+<p style="color:white; margin:0; font-size:20px; font-weight:600;">Watch Now</p>
+        </div>
+</div>
+</div>
+      </div>
+        <div style="width:500px; background-color: #111; border-radius:0 8px 8px 0; height:472px; margin:0; padding:10px; display:flex; flex-direction:column;">
+                  <h2 id="movie-title"></h2>
+        <p id="movie-description"></p>
+        <p>Genre: <span id="movie-genre"></span></p>
+        <p>Cast: <span id="movie-cast"></span></p>
+        <p>Rating: <span id="movie-rating"></span></p>
+        <p>Release Date: <span id="release-date"></span></p>
+                </div>
+    </div>
+        </div>
     <script>
-        document.getElementById('search-button').addEventListener('click', function () {
-            const query = document.getElementById('search-input').value;
-            const mediaType = document.getElementById('search-type').value;
-            searchMedia(query, mediaType);
-        });
+      document.getElementById('series').style.visibility = "hidden";
+                      document.getElementById('movieItems').style.visibility = "hidden";
+        const apiKey = 'e479c27ddf18512de2bbc883c3612637';
+                  let iframeSrc;
+function searchMedia(query, mediaType) {
+    const apiUrl = `https://api.themoviedb.org/3/search/${mediaType}?api_key=${apiKey}&query=${query}`;
 
-        function searchMedia(query, mediaType) {
-            const apiKey = 'e479c27ddf18512de2bbc883c3612637';
-            const apiUrl = `https://api.themoviedb.org/3/search/${mediaType}?api_key=${apiKey}&query=${query}`;
-
-            fetch(apiUrl)
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const results = data.results;
+            const resultsDropdown = document.getElementById('results-dropdown');
+            resultsDropdown.innerHTML = ''; 
+document.getElementById('webdescription').style.display = "none";
+            results.forEach(result => {
+                const card = document.createElement('div');
+                card.classList.add('movie-card');
+                card.innerHTML = `
+                    <img src="https://image.tmdb.org/t/p/w200${result.poster_path}" alt="${result.title || result.name}" class="movie-poster">
+                    <div class="movie-title">${result.title || result.name}</div>
+                    <div class="movie-description">${result.overview}</div>
+                `;
+                card.addEventListener('click', function() {
+                      const resultId = result.id;
+                      const type = determineType(); 
+            fetch(`https://api.themoviedb.org/3/${type}/${resultId}?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US`)
                 .then(response => response.json())
                 .then(data => {
-                    const results = data.results;
-                    const resultsDropdown = document.getElementById('results-dropdown');
-                    resultsDropdown.innerHTML = ''; 
+                    document.getElementById('movie-description').innerText = data.overview;
+                    document.getElementById('movie-rating').innerText = data.vote_average;
+                          if (type === 'movie') {
+                document.getElementById('movie-title').innerText = data.title;
+                document.getElementById('release-date').innerText = data.release_date;
+            } else if (type === 'tv') {
+                document.getElementById('movie-title').innerText = data.name;
+                document.getElementById('release-date').innerText = data.first_air_date;
+            }
+                    
+                    const posterPath = data.poster_path;
+                    const posterBaseUrl = 'https://image.tmdb.org/t/p/w500/';
+                    const movieImage = document.getElementById('movie-image');
+                    movieImage.src = posterPath ? posterBaseUrl + posterPath : 'https://via.placeholder.com/500x750?text=No+Image+Available';
 
-                    results.forEach(result => {
-                        const card = document.createElement('div');
-                        card.classList.add('movie-card');
-                        card.innerHTML = `
-                            <img src="https://image.tmdb.org/t/p/w200${result.poster_path}" alt="${result.title || result.name}" class="movie-poster">
-                            <div class="movie-title">${result.title || result.name}</div>
-                            <div class="movie-description">${result.overview}</div>
-                        `;
-                        resultsDropdown.appendChild(card);
-                    });
-                });
+                    const genres = data.genres.map(genre => genre.name).join(', ');
+                    document.getElementById('movie-genre').innerText = genres;
+
+                    fetch(`https://api.themoviedb.org/3/${type}/${resultId}/credits?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US`)
+                        .then(response => response.json())
+                        .then(creditsData => {
+                            const cast = creditsData.cast.slice(0, 5).map(actor => actor.name).join(', ');
+                            document.getElementById('movie-cast').innerText = cast;
+                        })
+                })
+                  function determineType() {
+    if (document.getElementById('search-type').value === 'tv') {
+        return "tv";
+    } else {
+        return "movie";
+    }
+}
+function fetchMoviePoster(movieId) {
+      const type = determineType(); 
+            fetch(`https://api.themoviedb.org/3/${type}/${movieId}?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US`)
+                .then(response => response.json())
+                .then(data => {
+                    const backdropPath = data.backdrop_path;
+                    const backdropBaseUrl = 'https://image.tmdb.org/t/p/';
+                    const backdropSize = 'original';
+                    const movieBackground = document.getElementById('movieItems');
+                    movieBackground.style.backgroundImage = `url(${backdropBaseUrl}${backdropSize}${backdropPath})`;
+                })
+                .catch(error => console.error('Error fetching movie details:', error));
         }
+
+        fetchMoviePoster(resultId);
+    const hiddenResultIdElement = document.getElementById('hidden-result-id');
+    hiddenResultIdElement.textContent = resultId;
+                document.getElementById('nice').style.display = "none";
+                document.getElementById('movieItems').style.visibility = "visible";
+                      changeSE(); 
+                    if (mediaType === 'tv') {
+                            document.getElementById('series').style.visibility = "visible";
+                      const value1 = document.getElementById("value1").textContent;
+                      const value2 = document.getElementById("value2").textContent;
+                        iframeSrc = `https://www.2embed.cc/embedtv/${result.id}&s=${value1}&e=${value2}`;
+                    } else {
+                        iframeSrc = `https://www.2embed.cc/embed/${result.id}`;
+                    }
+                    const iframeContainer = document.getElementById('iframe-container');
+                    iframeContainer.innerHTML = `<iframe class="source-frame show" allowtransparency="true" allowfullscreen="" frameborder="0" src="${iframeSrc}" scrolling="no" style="border: none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>`;
+                });
+                resultsDropdown.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('Error searching for media:', error);
+        });
+}
+
+document.getElementById('search-button').addEventListener('click', function() {
+  
+    const searchInput = document.getElementById('search-input').value.trim();
+    const searchType = document.getElementById('search-type').value;
+    if (searchInput !== '') {
+        searchMedia(searchInput, searchType);
+    }
+});
+                   let values = {
+            value1: 1,
+            value2: 1
+        };
+
+        function updateValueDisplay(id) {
+            document.getElementById(id).textContent = values[id];
+        }
+
+        function increment(id) {
+            values[id]++;
+            updateValueDisplay(id);
+        }
+
+        function decrement(id) {
+            if (values[id] > 1) {
+                values[id]--;
+                updateValueDisplay(id);
+            }
+        } 
+function changeSE() {
+    const resultId = document.getElementById('hidden-result-id').textContent;
+
+    var show = document.getElementById("search-type").value;
+    if (show === 'tv') {
+        const value1 = document.getElementById("value1").textContent;
+        const value2 = document.getElementById("value2").textContent;
+        iframeSrc = `https://multiembed.mov/?video_id=${resultId}&tmdb=1&s=${value1}&e=${value2}`;
+        const iframeContainer = document.getElementById('iframe-container');
+        iframeContainer.innerHTML = `<iframe class="source-frame show" allowtransparency="true" allowfullscreen="" frameborder="0" src="${iframeSrc}" scrolling="no" style="border: none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>`;
+    }
+}
+document.querySelector("#showall").onclick = function() {
+document.getElementById('movieItems').style.visibility = "hidden"
+document.getElementById('nice').style.display = "block"
+document.querySelector('iframe').style.visibility = "hidden"
+  document.getElementById('webdescription').style.display = "block";
+};
+
     </script>
 </body>
 </html>
