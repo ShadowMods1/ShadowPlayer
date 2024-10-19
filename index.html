@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShadowPlayer - Watch Movies Online(FREE)</title>
-  <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/y87h3x7y/0dc15569002a714e09ef3b03da9ac43d-removebg-preview.png">
+  <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/5yKBLFFG/IMG-0124.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
 body {
@@ -73,7 +73,7 @@ body {
             padding: 9.6px 10px;
             height:37.5px;
             font-size: 16px;
-            background-color: gray;
+            background-color: lightblue;
             font-weight:bold;
             color: #ffffff;
             border: none;
@@ -334,7 +334,7 @@ body {
 <body>
       <div id="nice">
         <div id="title">
-          <img src="https://i.postimg.cc/y87h3x7y/0dc15569002a714e09ef3b03da9ac43d-removebg-preview.png">
+          <img src="https://i.postimg.cc/5yKBLFFG/IMG-0124.png">
         </div>
         <h2 style="color:#555;">
           Watch Movies Online in HD for Free!
@@ -435,7 +435,7 @@ body {
         const apiKey = 'e479c27ddf18512de2bbc883c3612637';
                   let iframeSrc;
 function searchMedia(query, mediaType) {
-    const apiUrl = https://api.themoviedb.org/3/search/${mediaType}?api_key=${apiKey}&query=${query};
+    const apiUrl = `https://api.themoviedb.org/3/search/${mediaType}?api_key=${apiKey}&query=${query}`;
 
     fetch(apiUrl)
         .then(response => response.json())
@@ -447,15 +447,15 @@ document.getElementById('webdescription').style.display = "none";
             results.forEach(result => {
                 const card = document.createElement('div');
                 card.classList.add('movie-card');
-                card.innerHTML = 
+                card.innerHTML = `
                     <img src="https://image.tmdb.org/t/p/w200${result.poster_path}" alt="${result.title || result.name}" class="movie-poster">
                     <div class="movie-title">${result.title || result.name}</div>
                     <div class="movie-description">${result.overview}</div>
-                ;
+                `;
                 card.addEventListener('click', function() {
                       const resultId = result.id;
                       const type = determineType(); 
-            fetch(https://api.themoviedb.org/3/${type}/${resultId}?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US)
+            fetch(`https://api.themoviedb.org/3/${type}/${resultId}?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US`)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('movie-description').innerText = data.overview;
@@ -476,7 +476,7 @@ document.getElementById('webdescription').style.display = "none";
                     const genres = data.genres.map(genre => genre.name).join(', ');
                     document.getElementById('movie-genre').innerText = genres;
 
-                    fetch(https://api.themoviedb.org/3/${type}/${resultId}/credits?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US)
+                    fetch(`https://api.themoviedb.org/3/${type}/${resultId}/credits?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US`)
                         .then(response => response.json())
                         .then(creditsData => {
                             const cast = creditsData.cast.slice(0, 5).map(actor => actor.name).join(', ');
@@ -492,14 +492,14 @@ document.getElementById('webdescription').style.display = "none";
 }
 function fetchMoviePoster(movieId) {
       const type = determineType(); 
-            fetch(https://api.themoviedb.org/3/${type}/${movieId}?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US)
+            fetch(`https://api.themoviedb.org/3/${type}/${movieId}?api_key=e479c27ddf18512de2bbc883c3612637&language=en-US`)
                 .then(response => response.json())
                 .then(data => {
                     const backdropPath = data.backdrop_path;
                     const backdropBaseUrl = 'https://image.tmdb.org/t/p/';
                     const backdropSize = 'original';
                     const movieBackground = document.getElementById('movieItems');
-                    movieBackground.style.backgroundImage = url(${backdropBaseUrl}${backdropSize}${backdropPath});
+                    movieBackground.style.backgroundImage = `url(${backdropBaseUrl}${backdropSize}${backdropPath})`;
                 })
                 .catch(error => console.error('Error fetching movie details:', error));
         }
@@ -514,12 +514,12 @@ function fetchMoviePoster(movieId) {
                             document.getElementById('series').style.visibility = "visible";
                       const value1 = document.getElementById("value1").textContent;
                       const value2 = document.getElementById("value2").textContent;
-                        iframeSrc = https://www.2embed.cc/embedtv/${result.id}&s=${value1}&e=${value2};
+                        iframeSrc = `https://www.2embed.cc/embedtv/${result.id}&s=${value1}&e=${value2}`;
                     } else {
-                        iframeSrc = https://www.2embed.cc/embed/${result.id};
+                        iframeSrc = `https://www.2embed.cc/embed/${result.id}`;
                     }
                     const iframeContainer = document.getElementById('iframe-container');
-                    iframeContainer.innerHTML = <iframe class="source-frame show" allowtransparency="true" allowfullscreen="" frameborder="0" src="${iframeSrc}" scrolling="no" style="border: none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>;
+                    iframeContainer.innerHTML = `<iframe class="source-frame show" allowtransparency="true" allowfullscreen="" frameborder="0" src="${iframeSrc}" scrolling="no" style="border: none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>`;
                 });
                 resultsDropdown.appendChild(card);
             });
@@ -564,9 +564,9 @@ function changeSE() {
     if (show === 'tv') {
         const value1 = document.getElementById("value1").textContent;
         const value2 = document.getElementById("value2").textContent;
-        iframeSrc = https://multiembed.mov/?video_id=${resultId}&tmdb=1&s=${value1}&e=${value2};
+        iframeSrc = `https://multiembed.mov/?video_id=${resultId}&tmdb=1&s=${value1}&e=${value2}`;
         const iframeContainer = document.getElementById('iframe-container');
-        iframeContainer.innerHTML = <iframe class="source-frame show" allowtransparency="true" allowfullscreen="" frameborder="0" src="${iframeSrc}" scrolling="no" style="border: none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>;
+        iframeContainer.innerHTML = `<iframe class="source-frame show" allowtransparency="true" allowfullscreen="" frameborder="0" src="${iframeSrc}" scrolling="no" style="border: none;" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-pointer-lock allow-top-navigation-by-user-activation"></iframe>`;
     }
 }
 document.querySelector("#showall").onclick = function() {
