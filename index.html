@@ -544,7 +544,6 @@ function displayResults(results, type) {
     `;
     
     card.onclick = () => playContent(item.id, type);
-	      document.querySelector('.login-overlay').style.display = 'block';
     container.appendChild(card);
   });
 }
@@ -653,7 +652,9 @@ let currentShowId = null;
 document.addEventListener('DOMContentLoaded', () => {
   if (!localStorage.getItem('isLoggedIn')) {
     document.querySelector('.login-overlay').style.display = 'flex';
-  }
+					  } else {
+	      document.querySelector('.login-overlay').style.display = 'block';
+	  }
 });
 
 // Event Listeners
