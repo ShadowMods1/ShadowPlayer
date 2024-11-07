@@ -1,308 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShadowPlayer - Movie/TV Player</title>
-    <style>
-      body {
-        background: #0f0f0f;
-        color: white;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShadowPlayer - Movie/TV Player</title>
+  <style>
+    /* Styles */
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-      .header {
-        background: #1a1a2e;
-        padding: 20px;
-        text-align: center;
-      }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Behind all content */
+      top: 0;
+      left: 0;
+    }
 
-      .tabs {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-      }
+    .header {
+      background: rgba(26, 26, 46, 0.9);
+      padding: 20px;
+      text-align: center;
+    }
 
-      .tab {
-        padding: 10px 20px;
-        margin: 0 10px;
-        cursor: pointer;
-        border: 1px solid #444;
-        border-radius: 5px;
-        background: #222;
-      }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
 
-      .tab.active {
-        background: #ff6347;
-      }
+    .tab {
+      padding: 10px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #222;
+    }
 
-      .search-container {
-        text-align: center;
-        margin-top: 20px;
-      }
+    .tab.active {
+      background: #ff6347;
+    }
 
-      .search-input {
-        padding: 10px;
-        font-size: 1rem;
-        border-radius: 5px;
-      }
+    .search-container {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-      .search-button {
-        padding: 10px 15px;
-        margin-left: 10px;
-        background-color: #ff6347;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+    .search-input {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
 
-      .about-section {
-        background: #222;
-        padding: 30px;
-        margin-top: 20px;
-        text-align: center;
-      }
+    .search-button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      background-color: #ff6347;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-      .about-section h2 {
-        color: #ff6347;
-      }
+    .logout-button {
+      background-color: #ff6347;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
 
-      .about-section p {
-        max-width: 800px;
-        margin: 0 auto;
-        font-size: 1rem;
-      }
+    .logout-button:hover {
+      background-color: #e53e33;
+    }
 
-      .content-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-        justify-items: center;
-        margin-top: 30px;
-      }
+    .about-section {
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #222;
+      border-radius: 5px;
+    }
 
-      .content-card {
-        background: #333;
-        border-radius: 10px;
-        padding: 15px;
-        text-align: center;
-        cursor: pointer;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease;
-      }
+    .content-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
 
-      .content-card:hover {
-        transform: scale(1.05);
-      }
+    .content-card {
+      background: #333;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
 
-      .content-card img {
-        width: 100%;
-        border-radius: 10px;
-      }
+    .content-card:hover {
+      transform: scale(1.05);
+    }
 
-      .content-card h3 {
-        margin-top: 10px;
-      }
+    .content-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
 
-      .player {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        z-index: 1000;
-        background-color: rgba(0, 0, 0, 0.8);
-        padding: 20px;
-        border-radius: 10px;
-        width: 80%;
-        max-width: 900px;
-      }
+    .content-card h3 {
+      margin-top: 10px;
+    }
 
-      .player iframe {
-        width: 100%;
-        height: 500px;
-        border: none;
-      }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 999;
-      }
+    .player, .trailer-player {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 900px;
+    }
 
-      .section-title {
-        text-align: center;
-        font-size: 1.5rem;
-        margin-top: 50px;
-        color: #ff6347;
-      }
-    </style>
-  </head>
-  <body>
+    .player iframe, .trailer-player iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
 
-    <!-- Header -->
-    <div class="header">
-      <h1>Welcome to ShadowPlayer</h1>
-      <p>Stream your favorite content!</p>
-    </div>
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+    }
 
-    <!-- Content Search -->
-    <div class="search-container">
-      <input id="search-input" class="search-input" type="text" placeholder="Search Movies/TV Shows" />
-      <button class="search-button" onclick="searchContent()">Search</button>
-    </div>
+    .section-title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-top: 50px;
+      color: #ff6347;
+    }
+  </style>
+</head>
+<body>
 
-    <!-- Tabs for Movies and TV Shows -->
-    <div class="tabs">
-      <div id="movie-tab" class="tab active" onclick="toggleTab('movie')">Movies</div>
-      <div id="tv-show-tab" class="tab" onclick="toggleTab('tv-show')">TV Shows</div>
-    </div>
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
 
-    <!-- About Section (Right Below the Buttons) -->
-    <div class="about-section">
-      <h2>About ShadowPlayer</h2>
-      <p>ShadowPlayer is your go-to platform for streaming the latest movies and TV shows. With an easy-to-use interface and a wide selection of content, ShadowPlayer lets you enjoy your favorite media with ease and convenience.</p>
-    </div>
+  <!-- Logout Button -->
+  <button class="logout-button" onclick="logout()">Logout</button>
 
-    <!-- Trending Content -->
-    <div class="section-title">Trending Content</div>
-    <div class="content-container" id="popular-container"></div>
+  <!-- Header -->
+  <div class="header">
+    <h1>Welcome to ShadowPlayer</h1>
+    <p>Stream your favorite content!</p>
+  </div>
 
-    <!-- Content Player -->
-    <div id="player" class="player">
-      <h2>Now Playing</h2>
-      <iframe id="player-frame" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
+  <!-- Tabs for Movies and TV Shows -->
+  <div class="tabs">
+    <div id="movie-tab" class="tab active" onclick="toggleTab('movie')">Movies</div>
+    <div id="tv-show-tab" class="tab" onclick="toggleTab('tv')">TV Shows</div>
+  </div>
 
-    <!-- Overlay for background dimming -->
-    <div id="overlay" class="overlay" onclick="closePlayer()"></div>
+  <!-- Content Search -->
+  <div class="search-container">
+    <input id="search-input" class="search-input" type="text" placeholder="Search Movies/TV Shows" />
+    <button class="search-button" onclick="searchContent()">Search</button>
+  </div>
 
-    <script>
-      const loggedIn = localStorage.getItem("userLoggedIn");
-      const username = localStorage.getItem("username");
+  <!-- About Section -->
+  <div class="about-section">
+    <h2>About ShadowPlayer</h2>
+    <p>ShadowPlayer allows you to watch movies and TV shows with ease. Stream trailers directly from YouTube and enjoy full-length content.</p>
+  </div>
 
-      if (!loggedIn || (username !== "beta-test" && !loggedIn)) {
-        window.location.href = "index.html"; 
-      }
+  <!-- Sections for Most Popular and Most Recent -->
+  <div class="section-title">Trending Content</div>
+  <div class="content-container" id="popular-container"></div>
 
-      const API_KEY = "c712408a293423784df0be76dc14af13";
-      const TMDB_API = "https://api.themoviedb.org/3";
-      let currentTab = 'movie'; 
+  <!-- Content Player (Movie/TV) -->
+  <div id="player" class="player">
+    <h2>Now Playing</h2>
+    <iframe id="player-frame" src="" allow="autoplay" autoplay></iframe>
+  </div>
 
-      function toggleTab(tab) {
-        currentTab = tab;
-        const movieTab = document.getElementById('movie-tab');
-        const tvShowTab = document.getElementById('tv-show-tab');
-        
-        if (tab === 'movie') {
-          movieTab.classList.add('active');
-          tvShowTab.classList.remove('active');
-        } else {
-          tvShowTab.classList.add('active');
-          movieTab.classList.remove('active');
-        }
-        searchContent(); 
-      }
+  <!-- Trailer Player -->
+  <div id="trailer-player" class="trailer-player">
+    <h2>Trailer</h2>
+    <iframe id="trailer-frame" src="" allow="autoplay"></iframe>
+  </div>
 
-      async function searchContent() {
-        const query = document.getElementById("search-input").value;
-        if (!query) return;
+  <!-- Overlay for background dimming -->
+  <div id="overlay" class="overlay" onclick="closePlayer()"></div>
 
-        try {
-          let url = '';
-          if (currentTab === 'movie') {
-            url = `${TMDB_API}/search/movie?api_key=${API_KEY}&query=${query}`;
-          } else if (currentTab === 'tv-show') {
-            url = `${TMDB_API}/search/tv?api_key=${API_KEY}&query=${query}`;
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <script>
+    /* Initialize Particles.js */
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": {
+            "enable": true,
+            "value_area": 800
           }
-
-          const response = await fetch(url);
-          const data = await response.json();
-          displayResults(data.results);
-        } catch (error) {
-          console.error("Error fetching data: ", error);
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
         }
-      }
-
-      function displayResults(results) {
-        const container = document.getElementById("popular-container");
-        container.innerHTML = ""; 
-
-        results.forEach((item) => {
-          const card = document.createElement("div");
-          card.className = "content-card";
-          card.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title}">
-            <h3>${item.title}</h3>
-          `;
-          card.onclick = () => playContent(item.id);
-          container.appendChild(card);
-        });
-      }
-
-      async function displayPopularAndRecent() {
-        try {
-          const popularResponse = await fetch(`${TMDB_API}/movie/popular?api_key=${API_KEY}`);
-          const recentResponse = await fetch(`${TMDB_API}/movie/latest?api_key=${API_KEY}`);
-
-          const popularData = await popularResponse.json();
-          const recentData = await recentResponse.json();
-
-          displaySectionResults("popular-container", popularData.results);
-        } catch (error) {
-          console.error("Error fetching trending content: ", error);
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          }
+        },
+        "modes": {
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          }
         }
+      },
+      "retina_detect": true
+    });
+
+    const API_KEY = "c712408a293423784df0be76dc14af13";
+    const TMDB_API = "https://api.themoviedb.org/3";
+    let currentTab = 'movie';
+
+    document.addEventListener("DOMContentLoaded", loadTrendingContent);
+
+    function toggleTab(tab) {
+      currentTab = tab;
+      document.getElementById('movie-tab').classList.toggle('active', tab === 'movie');
+      document.getElementById('tv-show-tab').classList.toggle('active', tab === 'tv');
+      loadTrendingContent();
+    }
+
+    async function loadTrendingContent() {
+      const container = document.getElementById("popular-container");
+      container.innerHTML = ''; // Clear current content
+
+      const url = `${TMDB_API}/trending/${currentTab}/week?api_key=${API_KEY}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const results = data.results;
+
+      results.forEach((item) => {
+        const card = document.createElement("div");
+        card.classList.add("content-card");
+
+        card.innerHTML = `
+          <img src="https://image.tmdb.org/t/p/w200${item.poster_path}" alt="${item.title || item.name}">
+          <h3>${item.title || item.name}</h3>
+          <div class="button-container">
+            <button onclick="openTrailer('${item.id}')">Watch Trailer</button>
+            <button onclick="openPlayer('${item.id}')">Watch Now</button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    async function openTrailer(id) {
+      const trailerId = await getTrailerId(id);
+      if (trailerId) {
+        const trailerUrl = `https://www.youtube.com/embed/${trailerId}?autoplay=1`;
+        document.getElementById("trailer-frame").src = trailerUrl;
+        document.getElementById("trailer-player").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
       }
+    }
 
-      function displaySectionResults(sectionId, results) {
-        const sectionContainer = document.getElementById(sectionId);
-        sectionContainer.innerHTML = ""; 
+    async function getTrailerId(id) {
+      const url = `${TMDB_API}/${currentTab}/${id}/videos?api_key=${API_KEY}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const trailer = data.results.find((video) => video.type === 'Trailer');
+      return trailer ? trailer.key : '';
+    }
 
-        results.forEach((item) => {
-          const card = document.createElement("div");
-          card.className = "content-card";
-          card.innerHTML = `
-            <img src="https://image.tmdb.org/t/p/w500${item.poster_path}" alt="${item.title}">
-            <h3>${item.title}</h3>
-          `;
-          card.onclick = () => playContent(item.id);
-          sectionContainer.appendChild(card);
-        });
-      }
+    function openPlayer(id) {
+      const url = `https://www.2embed.cc/embed/${id}?autoplay=1`;
+      document.getElementById("player-frame").src = url;
+      document.getElementById("player").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
 
-      function playContent(id) {
-        const player = document.getElementById("player");
-        const iframe = document.getElementById("player-frame");
-        const overlay = document.getElementById("overlay");
+    function closePlayer() {
+      document.getElementById("player").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("player-frame").src = "";
+      document.getElementById("trailer-frame").src = "";
+      document.getElementById("trailer-player").style.display = "none";
+    }
 
-        // Using 2Embed API to generate the video URL
-        const videoUrl = `https://www.2embed.cc/embed/${id}?autoplay=1`;
+    function logout() {
+      // Clear session or authentication data
+      localStorage.clear();
+      // Redirect to login page
+      window.location.href = "/index.html"; // Adjust the path as needed
+    }
+  </script>
 
-        iframe.src = videoUrl;
-        player.style.display = "block";
-        overlay.style.display = "block";
-      }
-
-      function closePlayer() {
-        const player = document.getElementById("player");
-        const iframe = document.getElementById("player-frame");
-        const overlay = document.getElementById("overlay");
-
-        iframe.src = "";
-        player.style.display = "none";
-        overlay.style.display = "none";
-      }
-
-      displayPopularAndRecent();
-    </script>
-  </body>
+</body>
 </html>
